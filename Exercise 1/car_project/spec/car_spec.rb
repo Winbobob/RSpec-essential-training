@@ -1,7 +1,7 @@
 require 'car'
 
-descirbe 'Car' do 
-	descirbe 'attributes' do
+describe 'Car' do 
+	describe 'attributes' do
 		it "allows reading and writing for :make" do
 			car = Car.new
 			car.make = 'Test'
@@ -11,7 +11,7 @@ descirbe 'Car' do
 		it "allows reading and writing for :year" do
 			car = Car.new
 			car.year = 9999
-			expect.(car.year).to eq(9999)
+			expect(car.year).to eq(9999)
 		end
 
 		it "allows reading and writing for :color" do
@@ -26,14 +26,14 @@ descirbe 'Car' do
 		end
 	end
 
-	descirbe '.color' do
+	describe '.color' do
 		it "returns an array of color names" do
 			c = ['blue', 'black','red','green']
 			expect(Car.colors).to match_array(c)
 		end
 	end
 
-	descirbe '#full_name' do
+	describe '#full_name' do
 		it "returns a string in the expected format" do
 			@acura = Car.new(:make => 'Acura', :year => '2005', :color => 'red')
 			expect(@acura.full_name).to eq('2005 Acura (red)')
