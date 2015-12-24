@@ -22,13 +22,29 @@ descirbe 'Car' do
 
 		it "allows reading for :wheels" do
 			car = Car.new
-			expect(car.color).to eq(4)
+			expect(car.wheels).to eq(4)
 		end
 	end
 
 	descirbe '.color' do
+		it "returns an array of color names" do
+			c = ['blue', 'black','red','green']
+			expect(Car.colors).to match_array(c)
+		end
 	end
 
-	descirbe '#fullname' do
+	descirbe '#full_name' do
+		it "returns a string in the expected format" do
+			@acura = Car.new(:make => 'Acura', :year => '2005', :color => 'red')
+			expect(@acura.full_name).to eq('2005 Acura (red)')
+		end
+
+		#context is equal to describe
+		context 'when initialized with no arguments' do
+			it "returns a string using default values" do
+				car = Car.new
+				expect(car.full_name).to eq('2007 Volvo (unknown)')
+			end
+		end
 	end
 end
