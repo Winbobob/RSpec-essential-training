@@ -132,4 +132,29 @@ describe 'Doubles' do
 			dbl.step2
 		end
 	end
+
+	describe 'with arguments will match' do
+
+		let(:dbl){double('Customer List')}
+		it 'expects arguments will match' do
+			expect(dbl).to receive(:sort).with('name')
+			dbl.sort('name')
+		end
+
+		it 'passes when any arguments are allowed' do
+			#the default if you don't use #with
+			expect(dbl).to receive(:sort).with(any_args)
+			dbl.sort('2016', '01', '01')
+		end
+
+		it 'allows contraining only some arguments' do
+			expect(dbl).to receive(:sort).with('2016', anything, anything)
+			dbl.sort('2016', 'year of', 'Monkey')
+		end
+
+		it 'allows using other matchers' do
+			expect(dbl).to receive(:sort).with(a_string_starting_with('A'), an_object_eq_to('asc') | an_object_eq_to('desc'), boolean)
+			dbl.sort('Alex', 'desc', true)
+		end
+	end
 end
