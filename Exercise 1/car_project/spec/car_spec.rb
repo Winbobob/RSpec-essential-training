@@ -10,7 +10,9 @@ describe 'Car' do
 		let(:car) {Car.new}
 
 		#before(:example) do
-		#	@car = Car.new #execute before each example, and shoule use instance variables
+		#	@car = Car.new 
+		#execute before each example,
+		#SHOULD use INSTANCE variables
 		#end
 
 		it "allows reading and writing for :make" do
