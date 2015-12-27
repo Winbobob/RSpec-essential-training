@@ -3,8 +3,12 @@ require 'car'
 describe 'Car' do 
 	describe 'attributes' do
 
+		#use "subject" instead of "let" if variable is subject of example
+		#subject {Car.new}
+
 		#"let" is better than "before" for setting up instance variables (lazy exectuation)
 		let(:car) {Car.new}
+
 		#before(:example) do
 		#	@car = Car.new #execute before each example, and shoule use instance variables
 		#end
@@ -43,7 +47,7 @@ describe 'Car' do
 
 		let(:acura) {Car.new(:make => 'Acura', :year => '2005', :color => 'red')}
 		let(:car) {Car.new}
-		
+
 		it "returns a string in the expected format" do
 			expect(acura.full_name).to eq('2005 Acura (red)')
 		end
