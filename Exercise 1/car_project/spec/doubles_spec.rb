@@ -105,4 +105,31 @@ describe 'Doubles' do
 			expect(customers[1].name).to eq('Ann')
 		end
 	end
+
+	describe 'with message expectations' do
+
+		let(:chant){double('Chant')}
+		let(:dbl){double('Multi-step Process')}
+
+		it 'expects a call and allows a response' do
+			expect(chant).to receive(:hey!).and_return('Ho!')
+			chant.hey!
+		end
+
+		it 'does not matter with order' do 
+			expect(dbl).to receive(:step1)
+			expect(dbl).to receive(:step2)
+
+			dbl.step2
+			dbl.step1
+		end
+
+		it 'works with #ordered when order matters' do
+			expect(dbl).to receive(:step1).ordered
+			expect(dbl).to receive(:step2).ordered
+
+			dbl.step1
+			dbl.step2
+		end
+	end
 end
