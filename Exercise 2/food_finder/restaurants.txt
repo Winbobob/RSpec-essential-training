@@ -4,3 +4,5 @@ pita pocket	Fast food	10
 Quick Cup	coffee	5
 Taste of Little Italy	pizza	10
 Mallard House	New American	35
+Chelsea Diner	American	20
+aa	cc	1

@@ -140,6 +140,7 @@ describe Restaurant do
       #expect(crescent.save).to be(true)
       expect(Restaurant.file).to receive(:append).with(crescent)
       crescent.save
+      remove_created_file(test_file2)
     end
     
   end
