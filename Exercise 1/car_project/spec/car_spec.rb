@@ -34,7 +34,33 @@ describe 'Car' do
 			expect(car.wheels).to eq(4)
 		end
 
-		it "allows writing for :doors"
+		it "allows writing and writing for :doors" do
+			car.doors = 1
+			expect(car.doors).to eq(1)
+		end
+	end
+
+	describe '#initialize' do
+
+		let(:car){Car.new}
+		let(:car1){Car.new({:doors => 2})}
+
+		it 'defaults to 4 doors' do
+			expect(car.doors).to eq(4)
+		end
+
+		it 'accepts an option for doors' do
+			expect(car1.doors).to eq(2)
+		end
+
+		it 'defaults to 4 if option is neither 2 or 4' do
+			door_counts = []
+			[0,1,3,5,6].each do |n|
+				car = Car.new({:doors => n})
+				door_counts << car.doors
+			end
+			expect(door_counts).to all( eq(4) )
+		end
 	end
 
 	describe '.color' do
@@ -59,6 +85,35 @@ describe 'Car' do
 			it "returns a string using default values" do
 				expect(car.full_name).to eq('2007 Volvo (unknown)')
 			end
+		end
+	end
+
+	describe '#coupe?' do
+
+		let(:car){Car.new({:doors => 2})}
+		let(:car1){Car.new({:doors => 4})}
+
+		it 'returns true if it has 2 doors' do
+			expect(car.coupe?).to be(true)
+		end
+
+		it 'returns false if it does not have 2 doors' do
+			expect(car1.coupe?).to be(false)
+		end
+
+	end
+
+	describe '#sedan?' do
+
+		let(:car){Car.new({:doors => 4})}
+		let(:car1){Car.new({:doors => 2})}
+
+		it 'returns true if it has 4 doors' do
+			expect(car.sedan?).to be(true)
+		end
+
+		it 'returns false if it does not have 4 doors' do
+			expect(car1.sedan?).to be(false)
 		end
 	end
 end
